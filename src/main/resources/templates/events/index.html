@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+<head th:replace="fragments :: head">
 </head>
 <body>
 <h1>All Events</h1>
 
-<ul>
-    <th-block th:each="event : ${events}">
-        <li th:text="${event}"></li>
-    </th-block>
-</ul>
-
+<table>
+    <tr>
+        <th>Event Name</th>
+        <th>Description</th>
+        <th>Address</th>
+    </tr>
+    <th:block th:each="event : ${events}">
+        <tr>
+            <td th:text="${event.key}"></td>
+            <td th:text="${event.value}"></td>
+            <th:block th:if="${event.key.equals('Apple WWDC')}">
+                <td th:replace="fragments :: appleWWDC"></td>
+            </th:block>
+            <th:block th:if="${event.key.equals('StrangeLoop')}">
+                <td th:replace="fragments :: strangeLoop"></td>
+            </th:block>
+            <th:block th:if="${event.key.equals('Hour of code')}">
+                <td th:replace="fragments :: hoursOfCodeAddress"></td>
+            </th:block>
+        </tr>
+    </th:block>
+</table>
 </body>
 </html>

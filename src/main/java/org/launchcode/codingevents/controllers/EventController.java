@@ -22,7 +22,9 @@ public class EventController {
     }
     //lives at /events/create
     @GetMapping("create")
-    public String renderCreateEvent() {
+    public String renderCreateEvent(Model model) {
+        model.addAttribute("title", "Create Event");
+        model.addAttribute("event", new Event());
         return "events/create";
     }
     //lives at /events/create
